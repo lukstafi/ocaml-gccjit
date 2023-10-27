@@ -4,7 +4,7 @@
 
 (name gccjit)
 
-(version 0.3.0)
+(version 0.2.0)
 
 (generate_opam_files true)
 
@@ -27,6 +27,6 @@
   "`libgccjit` is an embeddable shared library being included in GCC for adding compilation \
   to existing programs using GCC as the backend. This package organizes the API of `gccjit` \
   into a few types and their corresponding modules.")
- (depends ocaml dune ctypes ctypes-foreign)
+ (depends ocaml dune ctypes ctypes-foreign (conf-libgccjit (>= 12)))
  (tags
   (gcc jit gccjit)))
