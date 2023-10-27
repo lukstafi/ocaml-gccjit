@@ -1,0 +1,4 @@
+(test
+ (name square)
+ (libraries gccjit)
+ (modules square))
