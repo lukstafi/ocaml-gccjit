@@ -35,5 +35,5 @@ let main () =
   (* Now try running the code *)
   assert (25 = callable 5)
 
-let _ =
+let () =
   main ()

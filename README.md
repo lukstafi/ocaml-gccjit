@@ -1,3 +1,5 @@
+# `ocaml-gccjit`
+
 `ocaml-gccjit` is a OCaml library that provides bidings for
 [`libgccjit`](https://gcc.gnu.org/wiki/JIT).  `libgccjit` is an embeddable
 shared library included in GCC 5 for adding compilation to existing programs
@@ -42,12 +44,13 @@ let square =
 ```
 
 We can now call the function by doing simply
+
 ```ocaml
 (* Now try running the code *)
 Printf.printf "square(5) = %d\n%!" (square 5)
 ```
 
-### Installation
+## Installation
 
 ```bash
 # Soon: opam install gccjit
@@ -63,7 +66,7 @@ environment variable before installing this package, like this:
 LIBGCCJIT_DIR=<libgccjit dir> opam pin add gccjit git://github.com/nojb/ocaml-gccjit
 ```
 
-### Links
+## Links
 
 - [API documentation](https://nojb.github.io/ocaml-gccjit)
 - [Tutorial](https://github.com/nojb/ocaml-gccjit/wiki)
@@ -71,6 +74,6 @@ LIBGCCJIT_DIR=<libgccjit dir> opam pin add gccjit git://github.com/nojb/ocaml-gc
 - [libgccjit wiki](https://gcc.gnu.org/wiki/JIT)
 - [Experiments in JIT compilation](https://github.com/davidmalcolm/jittest)
 
-### Contact
+## Contact
 
 Nicolas Ojeda Bar: <n.oje.bar@gmail.com>
