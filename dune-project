@@ -24,9 +24,7 @@
  (name gccjit)
  (synopsis "Bindings to libgccjit, the GCC JIT compiler")
  (description
-  "`libgccjit` is an embeddable shared library being included in GCC for adding compilation \
-  to existing programs using GCC as the backend. This package organizes the API of `gccjit` \
-  into a few types and their corresponding modules.")
- (depends ocaml dune ctypes ctypes-foreign (conf-libgccjit (>= 12)))
+  "`libgccjit` is an embeddable shared library being included in GCC for adding compilation to existing programs using GCC as the backend. This package organizes the API of `gccjit` into a few types and their corresponding modules.")
+ (depends ocaml dune ctypes ctypes-foreign conf-libgccjit)
  (tags
   (gcc jit gccjit)))

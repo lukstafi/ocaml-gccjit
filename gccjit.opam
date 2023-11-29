@@ -16,7 +16,7 @@ depends: [
   "dune" {>= "3.11"}
   "ctypes"
   "ctypes-foreign"
-  "conf-libgccjit" {>= "12"}
+  "conf-libgccjit"
   "odoc" {with-doc}
 ]
 build: [
