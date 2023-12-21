@@ -15,7 +15,7 @@
 
 (maintainers "Lukasz Stafiniak")
 
-(license LICENSE)
+(license "MIT")
 
 (documentation
  https://github.com/lukstafi/ocaml-gccjit/blob/master/README.md)
