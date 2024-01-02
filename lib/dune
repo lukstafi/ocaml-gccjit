@@ -49,10 +49,8 @@
  (action
   (with-stdout-to
    %{target}
-   (progn
-    (echo "(-I/usr/local/include -L/usr/local/lib -L")
-    (bash
-     "gcc --version | sed s/'gcc (FreeBSD Ports Collection) '/'/usr/local/lib/gcc'/ | sed s/'\\..\\..'/')'/")))))
+   (echo
+    "(-I/usr/local/include -L/usr/local/lib -L/usr/local/lib/gcc12 -L/usr/local/lib/gcc13)"))))
 
 (rule
  (target cclib-link-paths.txt)
@@ -62,10 +60,8 @@
  (action
   (with-stdout-to
    %{target}
-   (progn
-    (echo "(-cclib -I/usr/local/include -cclib -L/usr/local/lib -cclib -L")
-    (bash
-     "gcc --version | sed s/'gcc (FreeBSD Ports Collection) '/'/usr/local/lib/gcc'/ | sed s/'\\..\\..'/')'/")))))
+   (echo
+    "(-cclib -I/usr/local/include -cclib -L/usr/local/lib -cclib -L/usr/local/lib/gcc12 -cclib -L/usr/local/lib/gcc13)"))))
 
 (env
  (_
