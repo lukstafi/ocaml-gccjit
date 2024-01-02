@@ -6,6 +6,7 @@ let%expect_test "square" =
   (* Turn these on to get various kinds of debugging *)
   (* Context.set_option ctx Context.Dump_initial_tree true; *)
   Context.set_option ctx Context.Dump_initial_gimple true;
+
   (* Context.set_option ctx Context.Dump_generated_code true; *)
 
   (* Adjust this to control optimization level of the generated code *)

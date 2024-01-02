@@ -12,7 +12,7 @@ homepage: "https://github.com/lukstafi/ocaml-gccjit"
 doc: "https://github.com/lukstafi/ocaml-gccjit/blob/master/README.md"
 bug-reports: "https://github.com/lukstafi/ocaml-gccjit/issues"
 depends: [
-  "ocaml" {>= "4.03.0"}
+  "ocaml" {>= "4.08.0"}
   "dune" {>= "3.11"}
   "base-unix"
   "ctypes" {>= "0.14.0"}

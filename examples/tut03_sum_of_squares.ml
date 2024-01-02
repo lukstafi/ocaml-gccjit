@@ -16,7 +16,6 @@ let create_code ctx =
       }
       return sum;
    *)
-
   let n = Param.create ctx Type.(get ctx Int) "n" in
   let func = Function.create ctx Function.Exported Type.(get ctx Int) "loop_test" [ n ] in
 
@@ -38,7 +37,8 @@ let create_code ctx =
   Block.jump b_initial b_loop_cond;
 
   (* if (i >= n) *)
-  Block.cond_jump b_loop_cond (RValue.comparison ctx Ge (RValue.lvalue i) (RValue.param n))
+  Block.cond_jump b_loop_cond
+    (RValue.comparison ctx Ge (RValue.lvalue i) (RValue.param n))
     b_after_loop b_loop_body;
 
   (* sum += i * i *)
