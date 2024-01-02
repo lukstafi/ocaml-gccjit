@@ -28,6 +28,17 @@
    (echo "(-I/opt/local/include -I/usr/local/include -L/usr/local/lib)"))))
 
 (rule
+ (target cclib-link-paths.txt)
+ (enabled_if
+  (and
+   (<> %{system} macosx)
+   (<> %{system} freebsd)))
+ (action
+  (with-stdout-to
+   %{target}
+   (echo "(-cclib -I/opt/local/include -cclib -I/usr/local/include -cclib -L/usr/local/lib)"))))
+
+(rule
  (target c-link-paths.txt)
  (enabled_if
   (or
@@ -37,6 +48,19 @@
    %{target}
    (progn
     (echo "(-I/usr/local/include -L/usr/local/lib -L")
+    (bash
+     "gcc --version | sed s/'gcc (FreeBSD Ports Collection) '/'/usr/local/lib/gcc'/ | sed s/'\\..\\..'/')'/")))))
+
+(rule
+ (target cclib-link-paths.txt)
+ (enabled_if
+  (or
+   (= %{system} freebsd)))
+ (action
+  (with-stdout-to
+   %{target}
+   (progn
+    (echo "(-cclib -I/usr/local/include -cclib -L/usr/local/lib -cclib -L")
     (bash
      "gcc --version | sed s/'gcc (FreeBSD Ports Collection) '/'/usr/local/lib/gcc'/ | sed s/'\\..\\..'/')'/")))))
 
