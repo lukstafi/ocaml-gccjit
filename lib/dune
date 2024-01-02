@@ -99,3 +99,19 @@
    (functor Gccjit_bindings))
   (generated_types Types_generated)
   (generated_entry_point C)))
+
+(documentation
+ (package gccjit)
+ ;  (mld_files index)
+ )
+
+(rule
+ (alias upload-doc)
+ ; This doesn't work, why? So, need to dune build @doc first.
+ ; (deps (alias doc))
+ (action
+  (progn
+   (run cp -rf ../_doc/_html ../../doc/)
+   (run git add -A ../../../doc)
+   (run git commit ../../../doc -m "Update generated API docs")
+   (run git push origin master))))

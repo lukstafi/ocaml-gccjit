@@ -2,7 +2,7 @@
 
 `ocaml-gccjit` is a OCaml library that provides bidings for
 [`libgccjit`](https://gcc.gnu.org/wiki/JIT).  `libgccjit` is an embeddable
-shared library included in GCC 5 for adding compilation to existing programs
+shared library available since GCC 5 for adding compilation to existing programs
 using GCC as the backend.
 
 For example, consider this C function:
@@ -52,24 +52,21 @@ Printf.printf "square(5) = %d\n%!" (square 5)
 
 ## Installation
 
-```bash
-# Soon: opam install gccjit
-opam pin add gccjit git://github.com/nojb/ocaml-gccjit
-```
-
-In order for compilation to be successful the library `libgccjit` needs to be
-found by the C compiler using the `-lgccjit` flag.  If the `libgccjit` library
-in your system is a non-standard location, please set the `LIBGCCJIT_DIR`
-environment variable before installing this package, like this:
+Either `opam install gccjit` or:
 
 ```bash
-LIBGCCJIT_DIR=<libgccjit dir> opam pin add gccjit git://github.com/nojb/ocaml-gccjit
+
+opam pin add gccjit git://github.com/lukstafi/ocaml-gccjit
 ```
+
+Installing the package should also install the `libgccjit` library. If that is unsuccessful,
+install `libgccjit` manually so that it is found found by the C compiler using the `-lgccjit`
+flag.
 
 ## Links
 
-- [API documentation](https://nojb.github.io/ocaml-gccjit)
-- [Tutorial](https://github.com/nojb/ocaml-gccjit/wiki)
+- [API documentation](https://lukstafi.github.io/ocaml-gccjit)
+- [Original tutorial](https://github.com/nojb/ocaml-gccjit/wiki)
 - [The C header file](https://github.com/gcc-mirror/gcc/blob/master/gcc/jit/libgccjit.h)
 - [libgccjit wiki](https://gcc.gnu.org/wiki/JIT)
 - [Experiments in JIT compilation](https://github.com/davidmalcolm/jittest)
@@ -77,3 +74,4 @@ LIBGCCJIT_DIR=<libgccjit dir> opam pin add gccjit git://github.com/nojb/ocaml-gc
 ## Contact
 
 Nicolas Ojeda Bar: <n.oje.bar@gmail.com>
+Lukasz Stafiniak: <lukstafi@gmail.com>

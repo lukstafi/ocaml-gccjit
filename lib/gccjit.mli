@@ -463,11 +463,11 @@ new_rvalue_from_ptr ctx pointer_type Ctypes.null
       [Const_char_ptr]. *)
 
   val unary_op : context -> ?loc:location -> unary_op -> type_ -> rvalue -> rvalue
-  (** Build a unary operation out of an input {!rvalue}.  See {!unary_op}. *)
+  (** Build a unary operation out of an input {!rvalue}.  See {!type-unary_op}. *)
 
   val binary_op : context -> ?loc:location -> binary_op -> type_ -> rvalue -> rvalue -> rvalue
   (** Build a binary operation out of two constituent {{!rvalue}rvalues}. See
-      {!binary_op}. *)
+      {!type-binary_op}. *)
 
   val comparison : context -> ?loc:location -> comparison -> rvalue -> rvalue -> rvalue
   (** Build a boolean {!rvalue} out of the comparison of two other
