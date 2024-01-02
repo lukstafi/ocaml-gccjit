@@ -1,3 +1,7 @@
+## v0.3.2 2024-01-02
+
+- Tiny fixes for the opam repository release
+
 ## v0.3.1 2024-01-02
 
 - Compatibility with MacOS

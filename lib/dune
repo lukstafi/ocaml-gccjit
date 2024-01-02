@@ -97,10 +97,7 @@
   (generated_types Types_generated)
   (generated_entry_point C)))
 
-(documentation
- (package gccjit)
- ;  (mld_files index)
- )
+(documentation)
 
 (rule
  (alias upload-doc)
