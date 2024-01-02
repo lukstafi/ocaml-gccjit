@@ -25,6 +25,18 @@
  (synopsis "Bindings to libgccjit, the GCC JIT compiler")
  (description
   "`libgccjit` is an embeddable shared library being included in GCC for adding compilation to existing programs using GCC as the backend. This package organizes the API of `gccjit` into a few types and their corresponding modules.")
- (depends (ocaml (>= 4.03.0)) dune base-unix (ctypes (>= 0.14.0)) ctypes-foreign conf-libgccjit)
+ (depends
+  (ocaml
+   (>= 4.08.0))
+  dune
+  base-unix
+  (ctypes
+   (>= 0.14.0))
+  ctypes-foreign
+  conf-libgccjit
+  (ppx_expect
+   (and
+    :with-test
+    (>= v0.9.0))))
  (tags
   (gcc jit gccjit)))

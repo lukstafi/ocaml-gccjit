@@ -1,12 +1,12 @@
 open Gccjit
 
-let main () =
+let%expect_test "square" =
   let ctx = Context.create () in
 
   (* Turn these on to get various kinds of debugging *)
-  Context.set_option ctx Context.Dump_initial_tree true;
+  (* Context.set_option ctx Context.Dump_initial_tree true; *)
   Context.set_option ctx Context.Dump_initial_gimple true;
-  Context.set_option ctx Context.Dump_generated_code true;
+  (* Context.set_option ctx Context.Dump_generated_code true; *)
 
   (* Adjust this to control optimization level of the generated code *)
   Context.set_option ctx Context.Optimization_level 3;
@@ -32,8 +32,19 @@ let main () =
      case, the function we created above: *)
   let callable = Result.code res "square" Ctypes.(int @-> returning int) in
 
-  (* Now try running the code *)
-  assert (25 = callable 5)
+  let output = Str.global_replace (Str.regexp {|[0-9]+|}) "NNN" [%expect.output] in
+  print_endline output;
+  [%expect
+    {|
+      int square (int i)
+      {
+        int D.NNN;
 
-let () =
-  main ()
+        <D.NNN>:
+        D.NNN = i * i;
+        return D.NNN;
+      } |}];
+
+  (* Now try running the code *)
+  let () = print_endline @@ Int.to_string @@ callable 5 in
+  [%expect {| 25 |}]
