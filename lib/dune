@@ -70,6 +70,7 @@
 (env
  (_
   (c_flags
+   -fPIC
    (:include c-link-paths.txt))))
 
 (library
