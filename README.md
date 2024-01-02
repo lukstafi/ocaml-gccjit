@@ -60,12 +60,11 @@ opam pin add gccjit git://github.com/lukstafi/ocaml-gccjit
 ```
 
 Installing the package should also install the `libgccjit` library. If that is unsuccessful,
-install `libgccjit` manually so that it is found found by the C compiler using the `-lgccjit`
-flag.
+install `libgccjit` manually so that it is found by the C compiler using the `-lgccjit` flag.
 
 ## Links
 
-- [API documentation](https://lukstafi.github.io/ocaml-gccjit)
+- [API documentation](https://lukstafi.github.io/ocaml-gccjit/gccjit/Gccjit/index.html)
 - [Original tutorial](https://github.com/nojb/ocaml-gccjit/wiki)
 - [The C header file](https://github.com/gcc-mirror/gcc/blob/master/gcc/jit/libgccjit.h)
 - [libgccjit wiki](https://gcc.gnu.org/wiki/JIT)
