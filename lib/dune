@@ -8,6 +8,15 @@
    (echo "(-I/opt/homebrew/include -L/opt/homebrew/lib/gcc/current)"))))
 
 (rule
+ (target cclib-link-paths.txt)
+ (enabled_if
+  (= %{system} macosx))
+ (action
+  (with-stdout-to
+   %{target}
+   (echo "(-cclib -I/opt/homebrew/include -cclib -L/opt/homebrew/lib/gcc/current)"))))
+
+(rule
  (target c-link-paths.txt)
  (enabled_if
   (and
@@ -31,11 +40,13 @@
     (bash
      "gcc --version | sed s/'gcc (FreeBSD Ports Collection) '/'/usr/local/lib/gcc'/ | sed s/'\\..\\..'/')'/")))))
 
+(env (_ (c_flags (:include c-link-paths.txt))))
+
 (library
  (public_name gccjit)
  (name gccjit)
  (libraries ctypes.foreign)
- (flags :standard -cclib -lgccjit -w -9-27)
+ (flags :standard -w -9-27 (:include cclib-link-paths.txt))
  (ctypes
   (external_library_name libgccjit)
   (build_flags_resolver
