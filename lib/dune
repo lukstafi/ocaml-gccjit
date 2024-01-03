@@ -50,7 +50,7 @@
   (with-stdout-to
    %{target}
    (echo
-    "(-I/usr/local/include -L/usr/local/lib -L/usr/local/lib/gcc12 -L/usr/local/lib/gcc13)"))))
+    "(-I/usr/local/include -L/usr/local/lib -L/usr/local/lib/gcc12 -Wl,-rpath=/usr/local/lib/gcc12 -L/usr/local/lib/gcc13 -Wl,-rpath=/usr/local/lib/gcc13)"))))
 
 (rule
  (target cclib-link-paths.txt)
