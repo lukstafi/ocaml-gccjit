@@ -63,12 +63,6 @@
    (echo
     "(-cclib -I/usr/local/include -cclib -L/usr/local/lib -cclib -L/usr/local/lib/gcc12 -cclib -L/usr/local/lib/gcc13)"))))
 
-(env
- (_
-  (c_flags
-   -fPIC
-   (:include c-link-paths.txt))))
-
 (library
  (public_name gccjit)
  (name gccjit)
@@ -82,6 +76,9 @@
   (external_library_name libgccjit)
   (build_flags_resolver
    (vendored
+    (c_flags
+     -fPIC
+     (:include c-link-paths.txt))
     (c_library_flags
      -lgccjit
      (:include c-link-paths.txt))))
