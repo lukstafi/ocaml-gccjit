@@ -9,16 +9,6 @@
     "(-I/usr/local/include -I/opt/homebrew/include -L/usr/local/lib/gcc/current -L/opt/homebrew/lib/gcc/current)"))))
 
 (rule
- (target cclib-link-paths.txt)
- (enabled_if
-  (= %{system} macosx))
- (action
-  (with-stdout-to
-   %{target}
-   (echo
-    "(-cclib -I/opt/homebrew/include -cclib -I/usr/local/include -cclib -L/opt/homebrew/lib/gcc/current -cclib -L/usr/local/lib/gcc/current)"))))
-
-(rule
  (target c-link-paths.txt)
  (enabled_if
   (and
@@ -28,18 +18,6 @@
   (with-stdout-to
    %{target}
    (echo "(-I/opt/local/include -I/usr/local/include -L/usr/local/lib)"))))
-
-(rule
- (target cclib-link-paths.txt)
- (enabled_if
-  (and
-   (<> %{system} macosx)
-   (<> %{system} freebsd)))
- (action
-  (with-stdout-to
-   %{target}
-   (echo
-    "(-cclib -I/opt/local/include -cclib -I/usr/local/include -cclib -L/usr/local/lib)"))))
 
 (rule
  (target c-link-paths.txt)
@@ -52,17 +30,6 @@
    (echo
     "(-I/usr/local/include -L/usr/local/lib -L/usr/local/lib/gcc12 -Wl,-rpath=/usr/local/lib/gcc12 -L/usr/local/lib/gcc13 -Wl,-rpath=/usr/local/lib/gcc13)"))))
 
-(rule
- (target cclib-link-paths.txt)
- (enabled_if
-  (or
-   (= %{system} freebsd)))
- (action
-  (with-stdout-to
-   %{target}
-   (echo
-    "(-cclib -I/usr/local/include -cclib -L/usr/local/lib -cclib -L/usr/local/lib/gcc12 -cclib -L/usr/local/lib/gcc13)"))))
-
 (library
  (public_name gccjit)
  (name gccjit)
@@ -70,8 +37,7 @@
  (flags
   :standard
   -w
-  -9-27
-  (:include cclib-link-paths.txt))
+  -9-27)
  (ctypes
   (external_library_name libgccjit)
   (build_flags_resolver
