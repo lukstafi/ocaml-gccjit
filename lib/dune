@@ -1,23 +1,17 @@
 (rule
- (target c-link-paths.txt)
+ (target libgccjit.pc)
  (enabled_if
   (= %{system} macosx))
  (action
   (with-stdout-to
    %{target}
-   (echo "(-L/usr/local/lib/gcc/current -L/opt/homebrew/lib/gcc/current)"))))
+   (progn
+    (echo "Cflags: -I/usr/local/include -I/opt/homebrew/include\n")
+    (echo
+     "Libs: -lgccjit -L/usr/local/lib/gcc/current -L/opt/homebrew/lib/gcc/current")))))
 
 (rule
- (target c-include-paths.txt)
- (enabled_if
-  (= %{system} macosx))
- (action
-  (with-stdout-to
-   %{target}
-   (echo "(-I/usr/local/include -I/opt/homebrew/include)"))))
-
-(rule
- (target c-link-paths.txt)
+ (target libgccjit.pc)
  (enabled_if
   (and
    (<> %{system} macosx)
@@ -25,56 +19,39 @@
  (action
   (with-stdout-to
    %{target}
-   (echo "(-L/usr/local/lib)"))))
+   (progn
+    (echo "Name: libgccjit\nDescription: GCC JIT\nVersion: 0\n")
+    (echo "Cflags: -I/opt/local/include -I/usr/local/include\n")
+    (echo "Libs: -lgccjit -L/usr/local/lib")))))
 
 (rule
- (target c-include-paths.txt)
- (enabled_if
-  (and
-   (<> %{system} macosx)
-   (<> %{system} freebsd)))
- (action
-  (with-stdout-to
-   %{target}
-   (echo "(-I/opt/local/include -I/usr/local/include)"))))
-
-(rule
- (target c-link-paths.txt)
+ (target libgccjit.pc)
  (enabled_if
   (or
    (= %{system} freebsd)))
  (action
   (with-stdout-to
    %{target}
-   (echo
-    "(-L/usr/local/lib -L/usr/local/lib/gcc12 -Wl,-rpath=/usr/local/lib/gcc12 -L/usr/local/lib/gcc13 -Wl,-rpath=/usr/local/lib/gcc13)"))))
+   (progn
+    (echo "Cflags: -I/usr/local/include\n")
+    (echo
+     "Libs: -L/usr/local/lib -L/usr/local/lib/gcc12 -Wl,-rpath=/usr/local/lib/gcc12 -L/usr/local/lib/gcc13 -Wl,-rpath=/usr/local/lib/gcc13")))))
 
-(rule
- (target c-include-paths.txt)
- (enabled_if
-  (or
-   (= %{system} freebsd)))
- (action
-  (with-stdout-to
-   %{target}
-   (echo "(-I/usr/local/include)"))))
+(env
+ (_
+  (env-vars
+   (PKG_CONFIG_PATH "./"))))
 
 (library
  (public_name gccjit)
  (name gccjit)
  (libraries ctypes.foreign)
  (modes native)
- (flags :standard -w -9-27)
+ (flags :standard -verbose -w -9-27)
  (ctypes
+  (deps libgccjit.pc)
   (external_library_name libgccjit)
-  (build_flags_resolver
-   (vendored
-    (c_flags
-     -fPIC
-     (:include c-include-paths.txt))
-    (c_library_flags
-     -lgccjit
-     (:include c-link-paths.txt))))
+  (build_flags_resolver pkg_config)
   (headers
    (include "libgccjit.h"))
   (type_description
