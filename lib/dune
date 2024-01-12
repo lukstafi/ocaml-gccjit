@@ -6,6 +6,7 @@
   (with-stdout-to
    %{target}
    (progn
+    (echo "Name: libgccjit\nDescription: GCC JIT\nVersion: 0\n")
     (echo "Cflags: -I/usr/local/include -I/opt/homebrew/include\n")
     (echo
      "Libs: -lgccjit -L/usr/local/lib/gcc/current -L/opt/homebrew/lib/gcc/current")))))
@@ -33,6 +34,7 @@
   (with-stdout-to
    %{target}
    (progn
+    (echo "Name: libgccjit\nDescription: GCC JIT\nVersion: 0\n")
     (echo "Cflags: -I/usr/local/include\n")
     (echo
      "Libs: -L/usr/local/lib -L/usr/local/lib/gcc12 -Wl,-rpath=/usr/local/lib/gcc12 -L/usr/local/lib/gcc13 -Wl,-rpath=/usr/local/lib/gcc13")))))
