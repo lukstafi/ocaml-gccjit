@@ -2,16 +2,16 @@
  (name tut01_hello_world)
  (modules tut01_hello_world)
  (libraries gccjit)
- (modes exe))
+ (modes byte exe))
 
 (executable
  (name tut02_square)
  (modules tut02_square)
  (libraries gccjit)
- (modes exe))
+ (modes byte exe))
 
 (executable
  (name tut03_sum_of_squares)
  (modules tut03_sum_of_squares)
  (libraries gccjit)
- (modes exe))
+ (modes byte exe))

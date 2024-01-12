@@ -59,6 +59,9 @@ Either `opam install gccjit` or:
 opam pin add gccjit git://github.com/lukstafi/ocaml-gccjit
 ```
 
+Note: at the time of writing, using `gccjit` in bytecode requires patching Dune:
+[PR #8784](https://github.com/ocaml/dune/pull/8784).
+
 Installing the package should also install the `libgccjit` library. If that is unsuccessful,
 install `libgccjit` manually so that it is found by the C compiler using the `-lgccjit` flag.
 

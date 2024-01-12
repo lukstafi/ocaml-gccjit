@@ -46,7 +46,7 @@
  (public_name gccjit)
  (name gccjit)
  (libraries ctypes.foreign)
- (modes native)
+ (modes byte native)
  (flags :standard -verbose -w -9-27)
  (ctypes
   (deps libgccjit.pc)
