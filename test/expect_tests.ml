@@ -49,3 +49,16 @@ let%expect_test "square" =
   (* Now try running the code *)
   let () = print_endline @@ Int.to_string @@ callable 5 in
   [%expect {| 25 |}]
+
+
+let%expect_test "int type declaration" =
+  let ctx = Context.create () in
+  let typ = Type.int ctx ~signed:true 4 in
+
+  print_endline (Type.to_string typ);
+  [%expect {| int |}];
+
+  let typ = Type.int ctx ~signed:false 1 in
+
+  print_endline (Type.to_string typ);
+  [%expect {| unsigned char |}]
