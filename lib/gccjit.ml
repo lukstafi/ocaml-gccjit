@@ -250,7 +250,7 @@ module Type = struct
     | Complex_long_double -> GCC_JIT_TYPE_COMPLEX_LONG_DOUBLE
 
   let get ctx kind = wrap2 ctx gcc_jit_context_get_type ctx (type_kind kind)
-  let int ctx ?(signed = false) n = wrap3 ctx gcc_jit_context_get_int_type ctx (if signed then 1 else 0) n
+  let int ctx ?(signed = false) n = wrap3 ctx gcc_jit_context_get_int_type ctx n (if signed then 1 else 0)
 
   let pointer typ =
     let ctx = gcc_jit_object_get_context (gcc_jit_type_as_object typ) in
